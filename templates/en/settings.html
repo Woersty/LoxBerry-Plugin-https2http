@@ -1,0 +1,48 @@
+  <link rel="stylesheet" href="/plugins/<!--$psubfolder-->/style.css">
+
+  <!-- content -->
+
+  <div role="main" class="ui-content">
+    <div class="ui-body ui-body-a ui-corner-all loxberry-logo">
+    <!-- text -->
+    <div style="margin: 10px;">
+     <center>
+        <table border=0 cellpadding=10>
+        <tr>
+        <td colspan=3 align=center><h2><!--$plugin_title-->-Plugin</h2><img src="../../../system/images/icons/https2http/icon_64.png"></td>
+        </tr>
+        <tr>
+        <td colspan=3 align=center>This plugin makes it possbile to use encrypted websites (https://) with the object <a href="http://www.loxone.com/enen/service/documentation/loxone-config/global-functions/virtual-http-input.html" target="loxone"><b>Virtual HTTP input</b></a> of the <i>Loxone Config</i>. <br/><br/><small>It calls the website in background via a https-connection and presents the content under the LoxBerry Plugin-Address via HTTP-Protocol for further treatment.</small></td>
+        </tr>
+        <tr>
+        <td colspan=3 align=center><b>This Plugin has no settings.</b><hr></td>
+        </tr>
+        <tr>
+        <td colspan=3 align=left>Please enter the address of the website: <br/><input onkeyup="$('#target_link').val( $('#my_url').val() + encodeURIComponent( $('#target_website').val() ) );" id="target_website" type="text" value="https://website.com"></td>
+        </tr>
+        <tr>
+        <td colspan=3 align=left>The call from the virtual HTTP-input is done using this address: <br/><input id="target_link" type="text" value="<!--$https2http_url-->"></td>
+        </tr>
+        <tr>
+        <td colspan="2">
+        	<span id="response">&nbsp;</span>
+        </td>
+       </tr>
+      </table>
+      </center>
+      <input id="my_url" type="hidden" value="<!--$https2http_url-->">
+      <p>
+      &nbsp;
+      </p>
+
+      <p>
+      <center>
+      <a id="btncancel" data-role="button" data-inline="true" data-mini="true" data-icon="check" href="/admin/index.cgi">OK</a>
+      </center>
+      </p>
+</div>
+    <!-- /text -->
+    </div>
+  </div>
+<script>$('#target_website').trigger('keyup');</script>
+  <!-- /content -->
