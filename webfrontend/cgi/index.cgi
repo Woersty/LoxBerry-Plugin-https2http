@@ -68,7 +68,7 @@ our $plugin_title;
 ##########################################################################
 
 # Version of this script
-$version = "0.2";
+$version = "0.3";
 
 # Figure out in which subfolder we are installed
 $psubfolder = abs_path($0);
@@ -167,7 +167,7 @@ $cfg             = new Config::Simple("$installfolder/config/plugins/$psubfolder
 	sub lbheader 
 	{
 		 # Create Help page
-	  $helplink = "http://www.loxwiki.eu:80/x/o4CO";
+	  $helplink = "http://www.loxwiki.eu:80/display/LOXBERRY/https2http";
 	  open(F,"$installfolder/templates/plugins/$psubfolder/$lang/help.html") || die "Missing template plugins/$psubfolder/$lang/help.html";
 	    @help = <F>;
 	    foreach (@help)
