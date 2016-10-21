@@ -40,8 +40,8 @@ ARGV5=$5 # Fifth argument is Base folder of LoxBerry
 #echo "<INFO> Base folder is: $ARGV5"
 
 # Replace real subfolder and scriptname in config file and create subfolder.dat in CGI folder
-/bin/sed -i "s/REPLACEBYSUBFOLDER/$ARGV3/" $ARGV5/config/plugins/$ARGV3/https2http.cfg
-/bin/sed -i "s/REPLACEBYNAME/$ARGV2/" $ARGV5/config/plugins/$ARGV3/https2http.cfg
+/bin/sed -i "s#REPLACEBYSUBFOLDER#$ARGV3#" $ARGV5/config/plugins/$ARGV3/https2http.cfg
+/bin/sed -i "s#REPLACEBYNAME#$ARGV2#" $ARGV5/config/plugins/$ARGV3/https2http.cfg
 
 # Exit with Status 0
 exit 0
