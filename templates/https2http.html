@@ -1,0 +1,67 @@
+				<center>
+					<img src="<TMPL_VAR LOGO_ICON>"><br>
+				</center>
+				<br>
+				<div id="notifblock">
+					<!-- NOTIFICATIONS //-->
+					<TMPL_VAR NOTIFICATIONS>
+					<!-- NOTIFICATIONS //-->
+				</div>
+				<center>
+					<b><TMPL_VAR H2H.HEADER_TEXT></b>
+					<br>
+						<center>
+						<table border=0 cellpadding=10>
+						  <tr>
+						  	<td colspan=3 align=center><TMPL_VAR H2H.DESCRIPTION_TEXT></small></td>
+						  </tr>
+						  <tr>
+						  	<td colspan=3 align=center><b><TMPL_VAR H2H.NO_SETTINGS></b><hr></td>
+						  </tr>
+						  <tr>
+						  	<td colspan=3 align=left><TMPL_VAR H2H.ENTER_HTTPS_WEBSITE><br/><input onkeyup="$('#target_link').val( $('#my_url').val() + encodeURIComponent( $('#target_website').val() ) );" id="target_website" type="text" value="https://webseite.de"></td>
+						  </tr>
+						  <tr>
+						  	<td colspan=3 align=left><TMPL_VAR H2H.VIRT_HTTP_CALLER_URL><br/><input id="target_link" type="text" value="<!--$https2http_url-->"></td>
+						  </tr>
+						</table>
+					</center>
+					<input id="my_url" type="hidden" value="<TMPL_VAR https2http_url>">
+						<center>
+							<a id="btncancel" data-role="button" data-inline="true" data-mini="true" data-icon="check" href="/admin/index.cgi">OK</a>
+						</center>
+						<br>
+					<script>$('#target_website').trigger('keyup');</script>
+
+					 <div style="display:table;">
+						<div style="display:table-row;">
+							<div style="display:table-cell; ">
+								<div style="display:table; padding:10px; border: 1px solid black; border-radius: 5px; background-color: rgba(19,172,132,.2);">
+								<TMPL_VAR H2H.LOG_AREA> (<TMPL_VAR H2H.LOGLEVEL><TMPL_VAR LOGLEVEL>)<br>
+							 		<div style="display:table-row;">
+										<div style="display:table-cell; border-radius: 5px;" id="delete_log_div">
+								 			<button id="delete_log_btn" onclick="$('#delete_log_div').css('background-color','yellow'); $('#delete_log_btn').html('<TMPL_VAR H2H.LOG_BUTTON_DELETE_WAIT>'); $.ajax({url: '', type: 'GET', data: { 'delete_log':1},
+									            success: function (data) {
+									                $('#delete_log_div').css('background-color','green');
+									                $('#delete_log_btn').html('<TMPL_VAR H2H.LOG_BUTTON_DELETE_OK>');
+									                setTimeout( function() { $('#delete_log_div').css('background-color',''); $('#delete_log_btn').html('<TMPL_VAR H2H.LOG_BUTTON_DELETE>'); }, 2000);
+									            },
+									            error: function (textStatus, errorThrown) {
+									                $('#delete_log_div').css('background-color','red');
+									                $('#delete_log_btn').html('<TMPL_VAR H2H.LOG_BUTTON_DELETE_FAIL>');
+									                setTimeout( function() { $('#delete_log_div').css('background-color',''); $('#delete_log_btn').html('<TMPL_VAR H2H.LOG_BUTTON_DELETE>');}, 2000);
+									
+									            }	}); return false;" data-role="button" data-inline="true" data-mini="true"><TMPL_VAR H2H.LOG_BUTTON_DELETE></button>
+								 			<button onclick="window.open('/admin/system/tools/logfile.cgi?logfile=<TMPL_VAR LOGFILE>&amp;header=html&amp;format=template', 'log'); return false;" id="logview" data-role="button" data-inline="true" data-mini="true"><TMPL_VAR H2H.LOG_BUTTON_VIEW></button>
+								 			<SCRIPT> 
+			 					 	 			$("label").css("text-align","left").css("margin-top","8px").css("margin-bottom","-8px").css("margin-left","0px");
+											</SCRIPT>
+										</div>
+							 		</div>
+								</div>
+						 	</div>
+					 	</div>
+				 	</div>
+				 </center>
+<small><small><TMPL_VAR VERSION></small></small>
+
