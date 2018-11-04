@@ -28,6 +28,18 @@
 					</center>
 					<input id="my_url" type="hidden" value="<TMPL_VAR https2http_url>">
 						<center>
+							
+							<a id="btntest" data-role="button" data-inline="true" data-mini="true" data-icon="refresh" href="#"><TMPL_VAR H2H.TEST_TEXT></a>
+							<SCRIPT>
+							$( "#btntest" ).click(function ()
+								{
+									window.open($('#target_link').val(),'<TMPL_VAR H2H.MY_NAME>','status=no,scrollbars=no,titlebar=no,toolbar=no,menubar=no,location=no');
+									setTimeout(function()
+									{ 
+										$.ajax({url: '/plugins/<TMPL_VAR LBPPLUGINDIR>/get_notifications.php', type: 'GET', data: { 'package':'<TMPL_VAR LBPPLUGINDIR>', 'name':'<TMPL_VAR H2H.MY_NAME>'} }).success(function(data) {  $( '#notifblock' ).html(data).trigger('create'); if ( data.length > 10 ) { $('#notifblock').scrollToMe(); } }) ;	
+									}, 2000);
+								});
+							</SCRIPT>
 							<a id="btncancel" data-role="button" data-inline="true" data-mini="true" data-icon="check" href="/admin/index.cgi">OK</a>
 						</center>
 						<br>

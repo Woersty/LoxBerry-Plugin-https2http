@@ -76,7 +76,7 @@ if (isset($_REQUEST['url']))
 {
 	if (strtolower(substr($_SERVER['QUERY_STRING'],0,18)) != "url=https%3a%2f%2f") 
 	{
-		debug($L["ERRORS.URL_DOESNT_START_WITH_HTTPS"]." ".$_SERVER['REQUEST_URI'],4);
+		debug($L["ERRORS.URL_DOESNT_START_WITH_HTTPS"]." ".$_SERVER['REQUEST_URI'],3);
 		die($L["ERRORS.URL_DOESNT_START_WITH_HTTPS"]);
 	}
 	else
