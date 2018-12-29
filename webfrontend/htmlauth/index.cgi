@@ -62,6 +62,7 @@ if ( $R::delete_log )
 	LOGWARN "Delete Logfile: ".$logfilename;
 	LOGSTART "Logfile restarted.";
 	print "Content-Type: text/plain\n\nOK";
+	LOGEND;
 	exit;
 }
 else 
@@ -84,6 +85,7 @@ if ( !-r _ )
 	LOGCRIT $error_message;
 	LoxBerry::Web::lbfooter();
 	LOGCRIT "Leaving http2https Plugin due to an unrecoverable error";
+	LOGEND;
 	exit;
 }
 
@@ -157,7 +159,7 @@ sub defaultpage
 	$maintemplate->param( "LOGFILE" , $lbplogdir . "/" . $logfilename );
 	LOGDEB "Check for pending notifications for: " . $lbpplugindir . " " . $L{'H2H.MY_NAME'};
 	my $notifications = LoxBerry::Log::get_notifications_html($lbpplugindir, $L{'H2H.MY_NAME'});
-	LOGDEB "Notifications are:\n".encode_entities($notifications) if $notifications;
+	LOGDEB "Notifications pending" if $notifications;
 	LOGDEB "No notifications pending." if !$notifications;
     $maintemplate->param( "NOTIFICATIONS" , $notifications);
     
@@ -170,6 +172,7 @@ sub defaultpage
     print $maintemplate->output();
 	LoxBerry::Web::lbfooter();
 	LOGDEB "Leaving https2http Plugin normally";
+	LOGEND;
 	exit;
 }
 
@@ -186,6 +189,7 @@ sub error
 	print $errortemplate->output();
 	LoxBerry::Web::lbfooter();
 	LOGDEB "Leaving https2http Plugin with an error";
+	LOGEND;
 	exit;
 }
 
