@@ -62,7 +62,7 @@ if ( $R::delete_log )
 	LOGWARN "Delete Logfile: ".$logfilename;
 	LOGSTART "Logfile restarted.";
 	print "Content-Type: text/plain\n\nOK";
-	LOGEND;
+	LOGEND if $plugin->{PLUGINDB_LOGLEVEL} eq 7;
 	exit;
 }
 else 
@@ -85,7 +85,7 @@ if ( !-r _ )
 	LOGCRIT $error_message;
 	LoxBerry::Web::lbfooter();
 	LOGCRIT "Leaving http2https Plugin due to an unrecoverable error";
-	LOGEND;
+	LOGEND if $plugin->{PLUGINDB_LOGLEVEL} eq 7;
 	exit;
 }
 
@@ -172,7 +172,7 @@ sub defaultpage
     print $maintemplate->output();
 	LoxBerry::Web::lbfooter();
 	LOGDEB "Leaving https2http Plugin normally";
-	LOGEND;
+	LOGEND if $plugin->{PLUGINDB_LOGLEVEL} eq 7;
 	exit;
 }
 
@@ -189,7 +189,7 @@ sub error
 	print $errortemplate->output();
 	LoxBerry::Web::lbfooter();
 	LOGDEB "Leaving https2http Plugin with an error";
-	LOGEND;
+	LOGEND if $plugin->{PLUGINDB_LOGLEVEL} eq 7;
 	exit;
 }
 
