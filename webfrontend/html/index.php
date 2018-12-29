@@ -1,7 +1,7 @@
 <?php
 #####################################################################################################
 # Loxberry Plugin to change protocol from HTTPS to HTTP to be used in the Loxone http-input-Object.
-# Version: 04.11.2018 23:15:41
+# Version: 29.12.2018 17:53:28
 #####################################################################################################
 
 // Error Reporting off
@@ -92,13 +92,13 @@ if (isset($_REQUEST['url']))
 		curl_close($curl); 
 		if ($out === false )
 		{
-			debug("cURL Datas:<br>".$out,7);
 			debug($L["ERRORS.CURL_CALL_FAILED"],3);
+			debug("cURL call failed",7);
 		}	
 		else
 		{
-			debug("cURL Datas:<br>".htmlentities($out),7);
 			debug($L["LOG.CURL_CALL_OK"],5);
+			debug("cURL Datas:<br>".highlight_string($out,true),7);
 			echo $out;
 		}
 	}
