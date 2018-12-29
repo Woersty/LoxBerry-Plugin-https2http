@@ -93,7 +93,6 @@ if (isset($_REQUEST['url']))
 		if ($out === false )
 		{
 			debug($L["ERRORS.CURL_CALL_FAILED"]." [".curl_error($curl)."]",3);
-			debug("cURL call failed ".curl_error($curl),7);
 		}	
 		else
 		{
