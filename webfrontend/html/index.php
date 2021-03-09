@@ -13,6 +13,7 @@ $L = LBSystem::readlanguage("language.ini");
 $plugindata = LBSystem::plugindata();
 ini_set("log_errors", 1);
 ini_set("error_log", $lbplogdir."/https2http.log");
+touch($lbplogdir."/https2http.log");
 
 $datetime    = new DateTime;
 function debug($message = "", $loglevel = 7, $raw = 0)
@@ -91,11 +92,12 @@ if (isset($_REQUEST['url']))
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYSTATUS, false);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-		curl_setopt($curl, CURLOPT_ENCODING, true);
+		curl_setopt($curl, CURLOPT_ENCODING, "");
 		$out = curl_exec($curl);
 		if ($out === false )
 		{
-			debug($L["ERRORS.CURL_CALL_FAILED"]." [".curl_error($curl)."]",3);
+			debug($L["ERRORS.CURL_CALL_FAILED"]." (".$_REQUEST['url'].") [".curl_error($curl)."]",3);
+			echo $L["ERRORS.CURL_CALL_FAILED"]." (".$_REQUEST['url'].") [".curl_error($curl)."]";
 		}	
 		else
 		{
