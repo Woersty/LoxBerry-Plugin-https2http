@@ -1,4 +1,2 @@
-# LoxBerry-Plugin-https2http
+# LoxBerry-Plugin-kidlox
 A LoxBerry Plugin
--
-For Details visit http://www.loxwiki.eu/display/LOXBERRY/Plugins#Plugins-https2http

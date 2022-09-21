@@ -1,0 +1,21 @@
+{
+  "Listeners" : ["UDP:9", "UDP:7", "HTTP:8009" ],
+  "LogLevel" : "INFO",
+  "AvoidDualUDPSending" : {
+	  "Active": false,
+	  "Delay": "100ms"
+  },
+    "Commands" : [ 
+    {
+        "Operation" : "sleep",
+        "Command" : "C:\\Windows\\System32\\rundll32.exe powrprof.dll,SetSuspendState 0,1,1"
+    },
+	{
+        "Operation" : "warn",
+        "Command" : "msg.exe * Der Rechner wird in 30 Sekunden in den Ruhezustand versetzt."
+    },
+	   {
+        "Operation" : "halt",
+        "Command" : "C:\\Windows\\System32\\Shutdown.exe -s -t 30"
+    }]
+}

@@ -1,0 +1,1 @@
+c:\Tools\nssm.exe install SleepOnLan c:\Tools\sol.exe
