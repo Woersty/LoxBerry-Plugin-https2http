@@ -8,35 +8,35 @@
 					<!-- NOTIFICATIONS //-->
 				</div>
 				<center>
-					<b><TMPL_VAR KIDLOX.HEADER_TEXT></b>
+					<b><TMPL_VAR H2H.HEADER_TEXT></b>
 					<br>
 						<center>
 						<table border=0 cellpadding=10>
 						  <tr>
-						  	<td colspan=3 align=center><TMPL_VAR KIDLOX.DESCRIPTION_TEXT></small></td>
+						  	<td colspan=3 align=center><TMPL_VAR H2H.DESCRIPTION_TEXT></small></td>
 						  </tr>
 						  <tr>
-						  	<td colspan=3 align=center><b><TMPL_VAR KIDLOX.NO_SETTINGS></b><hr></td>
+						  	<td colspan=3 align=center><b><TMPL_VAR H2H.NO_SETTINGS></b><hr></td>
 						  </tr>
 						  <tr>
-						  	<td colspan=3 align=left><TMPL_VAR KIDLOX.ENTER_HTTPS_WEBSITE><br/><input onkeyup="$('#target_link').val( $('#my_url').val() + encodeURIComponent( $('#target_website').val() ) );" id="target_website" type="text" value="https://webseite.de"></td>
+						  	<td colspan=3 align=left><TMPL_VAR H2H.ENTER_HTTPS_WEBSITE><br/><input onkeyup="$('#target_link').val( $('#my_url').val() + encodeURIComponent( $('#target_website').val() ) );" id="target_website" type="text" value="https://webseite.de"></td>
 						  </tr>
 						  <tr>
-						  	<td colspan=3 align=left><TMPL_VAR KIDLOX.VIRT_HTTP_CALLER_URL><br/><input id="target_link" type="text" value="<!--$https2http_url-->"></td>
+						  	<td colspan=3 align=left><TMPL_VAR H2H.VIRT_HTTP_CALLER_URL><br/><input id="target_link" type="text" value="<!--$https2http_url-->"></td>
 						  </tr>
 						</table>
 					</center>
 					<input id="my_url" type="hidden" value="<TMPL_VAR https2http_url>">
 						<center>
 							
-							<a id="btntest" data-role="button" data-inline="true" data-mini="true" data-icon="refresh" href="#"><TMPL_VAR KIDLOX.TEST_TEXT></a>
+							<a id="btntest" data-role="button" data-inline="true" data-mini="true" data-icon="refresh" href="#"><TMPL_VAR H2H.TEST_TEXT></a>
 							<SCRIPT>
 							$( "#btntest" ).click(function ()
 								{
-									window.open($('#target_link').val(),'<TMPL_VAR KIDLOX.MY_NAME>','status=no,scrollbars=no,titlebar=no,toolbar=no,menubar=no,location=no');
+									window.open($('#target_link').val(),'<TMPL_VAR H2H.MY_NAME>','status=no,scrollbars=no,titlebar=no,toolbar=no,menubar=no,location=no');
 									setTimeout(function()
 									{ 
-										$.ajax({url: '/plugins/<TMPL_VAR LBPPLUGINDIR>/get_notifications.php', type: 'GET', data: { 'package':'<TMPL_VAR LBPPLUGINDIR>', 'name':'<TMPL_VAR KIDLOX.MY_NAME>'} }).success(function(data) {  $( '#notifblock' ).html(data).trigger('create'); if ( data.length > 10 ) { $('#notifblock').scrollToMe(); } }) ;	
+										$.ajax({url: '/plugins/<TMPL_VAR LBPPLUGINDIR>/get_notifications.php', type: 'GET', data: { 'package':'<TMPL_VAR LBPPLUGINDIR>', 'name':'<TMPL_VAR H2H.MY_NAME>'} }).success(function(data) {  $( '#notifblock' ).html(data).trigger('create'); if ( data.length > 10 ) { $('#notifblock').scrollToMe(); } }) ;	
 									}, 2000);
 								});
 							</SCRIPT>
@@ -49,22 +49,22 @@
 						<div style="display:table-row;">
 							<div style="display:table-cell; ">
 								<div style="display:table; padding:10px; border: 1px solid black; border-radius: 5px; background-color: rgba(19,172,132,.2);">
-								<TMPL_VAR KIDLOX.LOG_AREA> (<TMPL_VAR KIDLOX.LOGLEVEL><TMPL_VAR LOGLEVEL>)<br>
+								<TMPL_VAR H2H.LOG_AREA> (<TMPL_VAR H2H.LOGLEVEL><TMPL_VAR LOGLEVEL>)<br>
 							 		<div style="display:table-row;">
 										<div style="display:table-cell; border-radius: 5px;" id="delete_log_div">
-								 			<button id="delete_log_btn" onclick="$('#delete_log_div').css('background-color','yellow'); $('#delete_log_btn').html('<TMPL_VAR KIDLOX.LOG_BUTTON_DELETE_WAIT>'); $.ajax({url: '', type: 'GET', data: { 'delete_log':1},
+								 			<button id="delete_log_btn" onclick="$('#delete_log_div').css('background-color','yellow'); $('#delete_log_btn').html('<TMPL_VAR H2H.LOG_BUTTON_DELETE_WAIT>'); $.ajax({url: '', type: 'GET', data: { 'delete_log':1},
 									            success: function (data) {
 									                $('#delete_log_div').css('background-color','green');
-									                $('#delete_log_btn').html('<TMPL_VAR KIDLOX.LOG_BUTTON_DELETE_OK>');
-									                setTimeout( function() { $('#delete_log_div').css('background-color',''); $('#delete_log_btn').html('<TMPL_VAR KIDLOX.LOG_BUTTON_DELETE>'); }, 2000);
+									                $('#delete_log_btn').html('<TMPL_VAR H2H.LOG_BUTTON_DELETE_OK>');
+									                setTimeout( function() { $('#delete_log_div').css('background-color',''); $('#delete_log_btn').html('<TMPL_VAR H2H.LOG_BUTTON_DELETE>'); }, 2000);
 									            },
 									            error: function (textStatus, errorThrown) {
 									                $('#delete_log_div').css('background-color','red');
-									                $('#delete_log_btn').html('<TMPL_VAR KIDLOX.LOG_BUTTON_DELETE_FAIL>');
-									                setTimeout( function() { $('#delete_log_div').css('background-color',''); $('#delete_log_btn').html('<TMPL_VAR KIDLOX.LOG_BUTTON_DELETE>');}, 2000);
+									                $('#delete_log_btn').html('<TMPL_VAR H2H.LOG_BUTTON_DELETE_FAIL>');
+									                setTimeout( function() { $('#delete_log_div').css('background-color',''); $('#delete_log_btn').html('<TMPL_VAR H2H.LOG_BUTTON_DELETE>');}, 2000);
 									
-									            }	}); return false;" data-role="button" data-inline="true" data-mini="true"><TMPL_VAR KIDLOX.LOG_BUTTON_DELETE></button>
-								 			<button onclick="window.open('/admin/system/tools/logfile.cgi?logfile=<TMPL_VAR LOGFILE>&amp;header=html&amp;format=template', 'log'); return false;" id="logview" data-role="button" data-inline="true" data-mini="true"><TMPL_VAR KIDLOX.LOG_BUTTON_VIEW></button>
+									            }	}); return false;" data-role="button" data-inline="true" data-mini="true"><TMPL_VAR H2H.LOG_BUTTON_DELETE></button>
+								 			<button onclick="window.open('/admin/system/tools/logfile.cgi?logfile=<TMPL_VAR LOGFILE>&amp;header=html&amp;format=template', 'log'); return false;" id="logview" data-role="button" data-inline="true" data-mini="true"><TMPL_VAR H2H.LOG_BUTTON_VIEW></button>
 								 			<SCRIPT> 
 			 					 	 			$("label").css("text-align","left").css("margin-top","8px").css("margin-bottom","-8px").css("margin-left","0px");
 											</SCRIPT>

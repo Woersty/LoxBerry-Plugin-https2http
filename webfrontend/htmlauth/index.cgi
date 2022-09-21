@@ -27,17 +27,17 @@ use strict;
 no  strict "refs"; 
 
 # Variables
-my $maintemplatefilename 		= "kidlox.html";
+my $maintemplatefilename 		= "https2http.html";
 my $errortemplatefilename 		= "error.html";
 my $helptemplatefilename		= "help.html";
-my $pluginconfigfile 			= "kidlox.cfg";
+my $pluginconfigfile 			= "https2http.cfg";
 my $languagefile 				= "language.ini";
-my $logfilename 				= "kidlox.log";
+my $logfilename 				= "https2http.log";
 my $template_title;
-my $no_error_template_message	= "<b>KidLox:</b> The error template is not readable. We must abort here. Please try to reinstall the plugin.";
+my $no_error_template_message	= "<b>https2http:</b> The error template is not readable. We must abort here. Please try to reinstall the plugin.";
 my $version 					= LoxBerry::System::pluginversion();
-my $helpurl 					= "javascript:void();";
-my $log 						= LoxBerry::Log->new ( name => 'kidlox', filename => $lbplogdir ."/". $logfilename, append => 1 );
+my $helpurl 					= "http://www.loxwiki.eu/display/LOXBERRY/https2http";
+my $log 						= LoxBerry::Log->new ( name => 'https2http', filename => $lbplogdir ."/". $logfilename, append => 1 );
 my $plugin_cfg 					= new Config::Simple($lbpconfigdir . "/" . $pluginconfigfile);
 my %Config 						= $plugin_cfg->vars() if ( $plugin_cfg );
 my $error_message				= "";
@@ -57,7 +57,7 @@ $cgi->import_names('R');
 
 if ( $R::delete_log )
 {
-	my $log = LoxBerry::Log->new ( name => 'kidlox', filename => $lbplogdir ."/". $logfilename);
+	my $log = LoxBerry::Log->new ( name => 'https2http', filename => $lbplogdir ."/". $logfilename);
 	LOGDEB "Oh, it's a log delete call. ".$R::delete_log;
 	LOGWARN "Delete Logfile: ".$logfilename;
 	LOGSTART "Logfile restarted.";
@@ -128,7 +128,7 @@ if (!-r $lbpconfigdir . "/" . $pluginconfigfile)
 	LOGDEB "Try to create a default config";
 	$error_message = $ERR{'ERRORS.ERR_CREATE_CONFIG_FILE'};
 	open my $configfileHandle, ">", $lbpconfigdir . "/" . $pluginconfigfile or &error;
-		print $configfileHandle "[kidlox]\n";
+		print $configfileHandle "[https2http]\n";
 	close $configfileHandle;
 	LOGWARN "Default config created. Display error anyway to force a page reload";
 	$error_message = $ERR{'ERRORS.ERR_NO_CONFIG_FILE'};
@@ -163,15 +163,15 @@ sub defaultpage
 	LOGDEB "No notifications pending." if !$notifications;
     $maintemplate->param( "NOTIFICATIONS" , $notifications);
     
-    our $kidlox_url = "http://".$ENV{'HTTP_HOST'} . $ENV{'SCRIPT_NAME'}; 
-		$kidlox_url =~ s/admin\///ig;
-		$kidlox_url =~ s/index.cgi/?url=/ig;
-    $maintemplate->param( "kidlox_url" , $kidlox_url);
+    our $https2http_url = "http://".$ENV{'HTTP_HOST'} . $ENV{'SCRIPT_NAME'}; 
+		$https2http_url =~ s/admin\///ig;
+		$https2http_url =~ s/index.cgi/?url=/ig;
+    $maintemplate->param( "https2http_url" , $https2http_url);
 	
     
     print $maintemplate->output();
 	LoxBerry::Web::lbfooter();
-	LOGDEB "Leaving kidlox Plugin normally";
+	LOGDEB "Leaving https2http Plugin normally";
 	LOGEND if $plugin->{PLUGINDB_LOGLEVEL} eq 7;
 	exit;
 }
@@ -188,7 +188,7 @@ sub error
 	$errortemplate->param('ERR_BUTTON_BACK' , $ERR{'ERRORS.ERR_BUTTON_BACK'});
 	print $errortemplate->output();
 	LoxBerry::Web::lbfooter();
-	LOGDEB "Leaving kidlox Plugin with an error";
+	LOGDEB "Leaving https2http Plugin with an error";
 	LOGEND if $plugin->{PLUGINDB_LOGLEVEL} eq 7;
 	exit;
 }
