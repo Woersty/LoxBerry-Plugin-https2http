@@ -88,7 +88,7 @@ if (isset($_REQUEST['url']))
 		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($curl, CURLOPT_USERAGENT,'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36');
-		curl_setopt($curl, CURLOPT_URL, "https://".substr($_REQUEST['url'],8));
+		curl_setopt($curl, CURLOPT_URL, "https://".substr(urlencode($_REQUEST['url']),8));
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYSTATUS, false);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
