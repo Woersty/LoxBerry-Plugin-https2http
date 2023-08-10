@@ -1,7 +1,7 @@
 <?php
 #####################################################################################################
 # Loxberry Plugin to change protocol from HTTPS to HTTP to be used in the Loxone http-input-Object.
-# Version: 2023.07.31
+# Version: 2023.08.10
 #####################################################################################################
 
 // Error Reporting off
@@ -89,16 +89,24 @@ if (isset($_REQUEST['url']))
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($curl, CURLOPT_USERAGENT,'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36');
 		$position1 = strrpos($_REQUEST['url'], '@');
-		$part1 = substr($_REQUEST['url'],8,$position1-8);
-		$position2 = strpos($part1, ':');
-		$user = urlencode(substr($part1,0,$position2));
-		$pass = urlencode(substr($part1,$position2 + 1));
-		$part2 = substr($_REQUEST['url'],$position1);
-		debug("User: ".$user,7);
-		debug("Pass: ".$pass,7);
-		debug("URL: ".$part2,7);
-		debug("Call: "."https://".$user.":".$pass.$part2,7);
-		curl_setopt($curl, CURLOPT_URL, "https://".$user.":".$pass.$part2);
+		if ( $position1 )
+		{
+			debug("@ found at position ".$position1,7);
+			$part1 = substr($_REQUEST['url'],8,$position1-8);
+			$position2 = strpos($part1, ':');
+			$user = urlencode(substr($part1,0,$position2));
+			$pass = urlencode(substr($part1,$position2 + 1));
+			$part2 = substr($_REQUEST['url'],$position1 + 1);
+			debug("Call URL with Digest authentication: 'https://".$part2."' with User '".$user."' and Pass '".$pass."'",7);
+			curl_setopt($curl, CURLOPT_USERPWD, "$user:$pass");
+			curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
+			curl_setopt($curl, CURLOPT_URL, "https://".$part2);
+		}
+		else
+		{
+			curl_setopt($curl, CURLOPT_URL, "https://".substr($_REQUEST['url'],8));
+			debug("Call URL without authentication: "."https://".substr($_REQUEST['url'],8),7);
+		}
 		
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYSTATUS, false);
